@@ -9,7 +9,7 @@ if(isset($_POST['id'])){
     }else{
         try{
             $stmt = $conn->prepare('DELETE FROM tarefas WHERE id = :id');
-            $stmt->execute(array(
+            $res = $stmt->execute(array(
                 ':id' => $id
             ));
         }catch(PDOException $e){

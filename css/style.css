@@ -17,30 +17,74 @@ nav{
     padding: 1em;
 }
 .list, .add{
-    width: 100%;
-    max-width: 20em;
+    width: 80%;
+    max-width: 40em;
     margin-inline: auto;
     margin-top: 2em;
+    background-color:  rgb(224, 224, 224);
+    border-radius: 0.5em;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.371);
+    padding: 1em;
 }
 .item{
-    background-color: red;
-    vertical-align: middle;
-    align-content: middle;
+    background-color: rgb(224, 224, 224);
     padding: 0.5em;
+    padding-inline: 1em;
 }
 .item h2{
     margin: 0;
 }
 .item small{
     margin-bottom: 2em;
+} 
+ 
+.checked{
+    color: grey;
+    text-decoration-line: line-through;
 }
-.check{
+span{
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    border-radius: 1em;
+    background-color: grey;
+    transition: 0.5s;
+    margin: auto;
+    margin-right: 0;
+}
+span:hover{
+    background-color: red;
+    color: white;
+}
+.div-span{
+    width: 100%;
+}
+.text-input{
+    height: 2em;
+    border: none;
+    width:30em;
+    border-radius: 0.5em;
+    padding-left: 1em;
+    width: 80%;
+}
+.btn-submit{
+    padding: 0.5em;
+    padding-inline: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: white;
+    background-color: grey;
+    transition: 0.5s;
     margin-left: auto;
 }
-.check:checked ~ .item{
-    background-color: grey;
+
+.btn-submit:hover{
+    background: rgb(73, 213, 73);
+
 }
 
-.checked{
-    color: blue;
+/* ICONES */
+
+.uil-times::before{
+    font-size: 2em;
 }

@@ -9,6 +9,7 @@ require 'db_conn.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas PHP</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@ require 'db_conn.php';
     </header>
     <main class="conteudo">
         <section class="add">
-            <form action="app/add.php" method="POST" autocomplete="off">
+            <form class="flex" action="app/add.php" method="POST" autocomplete="off">
                 <input type="text" class="text-input" name="titulo" placeholder="Digite um nome para a tarefa">
                 <input type="submit" class="btn-submit">
             </form>
@@ -34,21 +35,25 @@ require 'db_conn.php';
                 </section>
                 <?php } else {
                 while ($tarefa = $tarefas->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <div class="item flex">
+                    <div class="item flex" id="item<?php echo $tarefa['id']?>">
                         <?php if ($tarefa['checked'] === 0) { ?>
-                            <span class="deletar" id="<?php echo $tarefa['id'] ?>">x</span>
                             <div class="block">
-                                <h2 class="checked"><?php echo $tarefa['titulo'] ?></h2>
+                                <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>">
+                                <h2><?php echo $tarefa['titulo'] ?></h2>
                                 <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
                             </div>
-                            <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>">
+                            <div class="flex div-span">
+                                <span class="deletar" id="<?php echo $tarefa['id'] ?>" onclick="apagarItem(<?php echo $tarefa['id'] ?>)"><i class="uil uil-times"></i></span>
+                            </div>
                         <?php } else { ?>
-                            <span class="deletar" id="<?php echo $tarefa['id'] ?>">x</span>
                             <div class="block">
+                                <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>" checked>
                                 <h2 class="checked"><?php echo $tarefa['titulo'] ?></h2>
                                 <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
                             </div>
-                            <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>" checked>
+                            <div class="flex div-span">
+                                <span class="deletar" id="<?php echo $tarefa['id'] ?>" onclick="apagarItem(<?php echo $tarefa['id'] ?>)"><i class="uil uil-times"></i></span>
+                            </div>
                         <?php } ?>
                     </div>
             <?php }
@@ -62,11 +67,8 @@ require 'db_conn.php';
         $('.deletar').click(function() {
             const id = $(this).attr('id');
             $.post("/app/delete.php", {
-                    id: id
-                },
-                (data) => {
-                    $(this).parent().hide(600);
-                })
+                id: id
+            });
         });
         $('.check-box').click(function() {
             const id = $(this).attr('data-tarefa-id');
@@ -75,13 +77,14 @@ require 'db_conn.php';
                     id: id
                 },
                 (data) => {
-                    alert(data)
-                    // if (data != 'Error') {
-                    //     const h2 = $(this).next();
-                    //     if (data === '1') {
-                    //         h2.removeClass('checked');
-                    //     }
-                    // }
+                    if (data != 'Error') {
+                        const h2 = $(this).next();
+                        if (data === '1') {
+                            h2.removeClass('checked');
+                        } else {
+                            h2.addClass('checked');
+                        }
+                    }
                 })
         })
     });
