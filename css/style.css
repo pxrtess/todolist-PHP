@@ -1,0 +1,42 @@
+.flex{
+    display: flex;
+}
+.block{
+    display: block;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    height: max-content;
+    background-color: grey;
+}
+.texto-logo{
+    margin: 0;
+    padding: 1em;
+}
+.list, .add{
+    width: 100%;
+    max-width: 20em;
+    margin-inline: auto;
+    margin-top: 2em;
+}
+.item{
+    background-color: red;
+    vertical-align: middle;
+    align-content: middle;
+    padding: 0.5em;
+}
+.item h2{
+    margin: 0;
+}
+.item small{
+    margin-bottom: 2em;
+}
+.check{
+    margin-left: auto;
+}
+.check:checked ~ .item{
+    background-color: grey;
+}
