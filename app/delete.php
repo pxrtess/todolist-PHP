@@ -8,7 +8,7 @@ if(isset($_POST['id'])){
         echo 0;
     }else{
         try{
-            $stmt = $conn->prepare('DELETE FROM todos WHERE id = :id');
+            $stmt = $conn->prepare('DELETE FROM tarefas WHERE id = :id');
             $stmt->execute(array(
                 ':id' => $id
             ));

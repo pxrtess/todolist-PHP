@@ -40,3 +40,7 @@ nav{
 .check:checked ~ .item{
     background-color: grey;
 }
+
+.checked{
+    color: blue;
+}

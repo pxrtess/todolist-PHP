@@ -35,15 +35,20 @@ require 'db_conn.php';
                 <?php } else {
                 while ($tarefa = $tarefas->fetch(PDO::FETCH_ASSOC)) { ?>
                     <div class="item flex">
-                        <span class="deletar" id="<?php echo $tarefa['id'] ?>">x</span>
-                        <div class="block">
-                            <h2><?php echo $tarefa['titulo'] ?></h2>
-                            <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
-                        </div>
                         <?php if ($tarefa['checked'] === 0) { ?>
-                            <input class="check" type="checkbox" id="<?php echo $tarefa['id'] ?>">
+                            <span class="deletar" id="<?php echo $tarefa['id'] ?>">x</span>
+                            <div class="block">
+                                <h2 class="checked"><?php echo $tarefa['titulo'] ?></h2>
+                                <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
+                            </div>
+                            <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>">
                         <?php } else { ?>
-                            <input class="check" type="checkbox" id="<?php echo $tarefa['id'] ?>" checked>
+                            <span class="deletar" id="<?php echo $tarefa['id'] ?>">x</span>
+                            <div class="block">
+                                <h2 class="checked"><?php echo $tarefa['titulo'] ?></h2>
+                                <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
+                            </div>
+                            <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>" checked>
                         <?php } ?>
                     </div>
             <?php }
@@ -54,14 +59,30 @@ require 'db_conn.php';
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
-        $('.deletar').click(function(){
+        $('.deletar').click(function() {
             const id = $(this).attr('id');
             $.post("/app/delete.php", {
-                id: id
-            },
-            (data)=>{
-                $(this).parent().hide(600);
-            })
+                    id: id
+                },
+                (data) => {
+                    $(this).parent().hide(600);
+                })
+        });
+        $('.check-box').click(function() {
+            const id = $(this).attr('data-tarefa-id');
+
+            $.post('app/check.php', {
+                    id: id
+                },
+                (data) => {
+                    alert(data)
+                    // if (data != 'Error') {
+                    //     const h2 = $(this).next();
+                    //     if (data === '1') {
+                    //         h2.removeClass('checked');
+                    //     }
+                    // }
+                })
         })
     });
 </script>

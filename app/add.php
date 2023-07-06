@@ -6,7 +6,7 @@ if(isset($_POST['titulo'])){
         header("Location: ../index.php/mess=error");
     }else{
         try{
-            $stmt = $conn->prepare('INSERT INTO todos (titulo) VALUES (:titulo)');
+            $stmt = $conn->prepare('INSERT INTO tarefas (titulo) VALUES (:titulo)');
             $stmt->execute(array(
                 ':titulo' => $titulo
             ));
