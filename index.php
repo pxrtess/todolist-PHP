@@ -10,11 +10,13 @@ require 'db_conn.php';
     <title>Lista de Tarefas PHP</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
     <header class="header">
         <nav class="navbar">
+        <i class="uil uil-clipboard-notes"></i>
             <h3 class="texto-logo">Lista de Tarefas</h3>
         </nav>
     </header>
@@ -25,13 +27,13 @@ require 'db_conn.php';
                 <input type="submit" class="btn-submit">
             </form>
         </section>
-        <section class="list">
+        <section class="lista" id="lista">
             <?php
             $tarefas = $conn->query("SELECT * FROM tarefas order by id desc");
             if ($tarefas->rowCount() === 0) {
             ?>
-                <section class="list empty">
-                    <div>Vazio</div>
+                <section>
+                    <h3>Lista vazia, insira uma tarefa primeiro.</h3>
                 </section>
                 <?php } else {
                 while ($tarefa = $tarefas->fetch(PDO::FETCH_ASSOC)) { ?>

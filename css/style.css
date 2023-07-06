@@ -1,3 +1,6 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 .flex{
     display: flex;
 }
@@ -10,13 +13,20 @@ body{
 }
 nav{
     height: max-content;
-    background-color: grey;
+    background-color: rgb(49, 137, 232);
+    color: white;
+    display: flex;
+    padding-inline: 2em;
+    align-items: center;
+}
+nav .uil{
+    font-size: 3em;
 }
 .texto-logo{
     margin: 0;
     padding: 1em;
 }
-.list, .add{
+.lista, .add{
     width: 80%;
     max-width: 40em;
     margin-inline: auto;
