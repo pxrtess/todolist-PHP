@@ -40,5 +40,3 @@
     <script src="js/script.js"></script>
 </body>
 </html>
-git config --global user.email "pedrohenports@gmail.com"
-  git config --global user.name "pxrtess"
