@@ -15,10 +15,10 @@ if(isset($_POST['id'])){
         }catch(PDOException $e){
             echo $e->getMessage();
         }
-        header("Location: ../index.php/");
+        header("Location: ../todolist.php/");
         $conn = null;
         exit();
     }
 }else{
-    header("Location: ../index.php/mess=error");
+    header("Location: ../todolist.php/mess=error");
 }

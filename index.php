@@ -1,6 +1,3 @@
-<?php
-require 'db_conn.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,80 +14,31 @@ require 'db_conn.php';
     <header class="header">
         <nav class="navbar">
         <i class="uil uil-clipboard-notes"></i>
-            <h3 class="texto-logo">Lista de Tarefas</h3>
+            <h3 class="texto-logo">Lista de Tarefas - Login</h3>
         </nav>
     </header>
-    <main class="conteudo">
-        <section class="add">
-            <form class="flex" action="app/add.php" method="POST" autocomplete="off">
-                <input type="text" class="text-input" name="titulo" placeholder="Digite um nome para a tarefa">
-                <input type="submit" class="btn-submit">
-            </form>
-        </section>
-        <section class="lista" id="lista">
-            <?php
-            $tarefas = $conn->query("SELECT * FROM tarefas order by id desc");
-            if ($tarefas->rowCount() === 0) {
-            ?>
-                <section>
-                    <h3>Lista vazia, insira uma tarefa primeiro.</h3>
-                </section>
-                <?php } else {
-                while ($tarefa = $tarefas->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <div class="item flex" id="item<?php echo $tarefa['id']?>">
-                        <?php if ($tarefa['checked'] === 0) { ?>
-                            <div class="block">
-                                <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>">
-                                <h2><?php echo $tarefa['titulo'] ?></h2>
-                                <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
-                            </div>
-                            <div class="flex div-span">
-                                <span class="deletar" id="<?php echo $tarefa['id'] ?>" onclick="apagarItem(<?php echo $tarefa['id'] ?>)"><i class="uil uil-times"></i></span>
-                            </div>
-                        <?php } else { ?>
-                            <div class="block">
-                                <input class="check-box" data-tarefa-id="<?php echo $tarefa['id'] ?>" type="checkbox" id="<?php echo $tarefa['id'] ?>" checked>
-                                <h2 class="checked"><?php echo $tarefa['titulo'] ?></h2>
-                                <small>Criado em: <?php echo $tarefa['date_time'] ?></small>
-                            </div>
-                            <div class="flex div-span">
-                                <span class="deletar" id="<?php echo $tarefa['id'] ?>" onclick="apagarItem(<?php echo $tarefa['id'] ?>)"><i class="uil uil-times"></i></span>
-                            </div>
-                        <?php } ?>
-                    </div>
-            <?php }
-            } ?>
-        </section>
-    </main>
+    <section class="section-login">
+        <form method="POST" action="login.php" class="login-form" id="formLogin">
+            <label for="username">Username</label>
+            <input type="text" name="username"><br>
+            <label for="senha">Senha</label><br>
+            <input type="password" name="senha"><br>
+            <input type="submit" class="btn-submit" value="Entrar">
+        </form>
+        <form method="POST" action="cadastrar.php" class="login-form" id="formCadastro" style="display: none;">
+            <label for="username">Username</label>
+            <input type="text" name="username"><br>
+            <label for="senha">Senha</label><br>
+            <input type="password" name="senha"><br>
+            <input type="submit" class="btn-submit" value="Cadastrar">
+        </form>
+        <div style="width: fit-content; margin:auto; margin-top:1em;">
+            <button id="btnCadastrar" onclick="cadastrar()" style="background-color: #3189e8; color:white;">Ir para cadastro</button>
+            <button id="btnLogar" onclick="logar()" style="display: none;background-color: #35ad56; color: white;">Ir para login</button>
+        </div>
+    </section>
+    <script src="js/script.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function() {
-        $('.deletar').click(function() {
-            const id = $(this).attr('id');
-            $.post("/app/delete.php", {
-                id: id
-            });
-        });
-        $('.check-box').click(function() {
-            const id = $(this).attr('data-tarefa-id');
-
-            $.post('app/check.php', {
-                    id: id
-                },
-                (data) => {
-                    if (data != 'Error') {
-                        const h2 = $(this).next();
-                        if (data === '1') {
-                            h2.removeClass('checked');
-                        } else {
-                            h2.addClass('checked');
-                        }
-                    }
-                })
-        })
-    });
-</script>
-<script src="js/script.js"></script>
-
 </html>
+git config --global user.email "pedrohenports@gmail.com"
+  git config --global user.name "pxrtess"

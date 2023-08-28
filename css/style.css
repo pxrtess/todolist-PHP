@@ -26,6 +26,46 @@ nav .uil{
     margin: 0;
     padding: 1em;
 }
+nav form{
+    margin-left: auto;
+}
+nav form input{
+    background-color: red;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 0.5em;
+}
+.section-login{
+    width: 40%;
+    margin: auto;
+    margin-top: 4em;
+}
+.section-login input[type=text], .section-login input[type=password]{
+    height: 2em;
+    border: none;
+    border-radius: 0.5em;
+    padding-left: 1em;
+    width: 80%;
+    display: flex;
+    margin: auto;
+    height: 2em;
+}
+.section-login input[type=submit]{
+    display: flex;
+    margin: auto;
+}
+.section-login label{
+    margin-left: 10%;
+    margin-top: 1em;
+}
+.login-form{
+    padding: 1em;
+    background-color:  rgb(224, 224, 224);
+    border-radius: 0.5em;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.371);
+}
 .lista, .add{
     width: 80%;
     max-width: 40em;

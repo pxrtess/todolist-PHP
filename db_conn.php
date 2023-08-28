@@ -1,7 +1,7 @@
 <?php
 $server = 'localhost';
 $user = 'root';
-$password = 'root';
+$password = '';
 $db_name = 'todolist';
 
 try{
